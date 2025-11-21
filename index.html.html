@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TechInsights - Next Level Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Font Awesome for Professional Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <style>
+    :root {
+      /* Professional Color Palette - Modern Tech Blog */
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --secondary: #f59e0b;
+      --accent: #8b5cf6;
+      --success: #10b981;
+      
+      --bg: #ffffff;
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --muted: #9ca3af;
+      --card-bg: #f9fafb;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+      /* Dark Mode Colors */
+      --dark-bg: #0f172a;
+      --dark-text: #f1f5f9;
+      --dark-text-light: #cbd5e1;
+      --dark-muted: #94a3b8;
+      --dark-card-bg: #1e293b;
+      --dark-border: #334155;
+      --dark-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .dark-mode {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    
+    .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
+      color: var(--dark-text);
+    }
+
+    /* Utilities */
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+    
+    a {
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    a:hover {
+      color: var(--secondary);
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .dark-mode header {
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid var(--dark-border);
+    }
+    
+    nav {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+    
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-weight: 900;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      user-select: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    ul.nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    ul.nav-links li a {
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    ul.nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    ul.nav-links li a:hover::after,
+    ul.nav-links li a.active::after {
+      width: 100%;
+    }
+    
+    ul.nav-links li a.active,
+    ul.nav-links li a:hover {
+      color: var(--primary);
+    }
+    
+    .dark-mode ul.nav-links li a {
+      color: var(--dark-text);
+    }
+    
+    .dark-mode ul.nav-links li a.active,
+    .dark-mode ul.nav-links li a:hover {
+      color: var(--primary);
+    }
+    
+    .theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      font-size: 1.5rem;
+      cursor: pointer;
+      user-select: none;
+      color: var(--text);
+      transition: all 0.3s ease;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .theme-toggle:hover {
+      transform: rotate(20deg) scale(1.1);
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .dark-mode .theme-toggle {
+      color: var(--dark-text);
+      background: var(--dark-card-bg);
+      border-color: var(--dark-border);
+    }
+
+    /* Hero section */
+    .hero {
+      height: 85vh;
+      background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.95) 0%,
+          rgba(139, 92, 246, 0.9) 50%,
+          rgba(236, 72, 153, 0.85) 100%
+        ),
+        url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1470&q=80")
+          no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.3), transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(236, 72, 153, 0.3), transparent 50%);
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    @keyframes gradientShift {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+    
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 4rem;
+      font-weight: 900;
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.8s ease;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.8s ease 0.2s both;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+    
+    .hero button.cta-btn {
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      border: none;
+      background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.8s ease 0.4s both;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .hero button.cta-btn:hover {
+      box-shadow: 0 15px 35px rgba(245, 158, 11, 0.6);
+      transform: translateY(-3px);
+    }
+    
+    .hero button.cta-btn:active {
+      transform: translateY(-1px);
+    }
+
+    /* Page container */
+    main {
+      max-width: 1280px;
+      margin: 3rem auto 5rem;
+      padding: 0 2rem;
+    }
+    
+    section.page {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    section.page.active {
+      display: block;
+    }
+    
+    .section-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-intro {
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      color: var(--text-light);
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    
+    .dark-mode .section-intro {
+      color: var(--dark-text-light);
+    }
+
+    /* Articles Grid */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid var(--border);
+      height: 100%;
+    }
+    
+    .dark-mode .card {
+      background: var(--dark-card-bg);
+      border-color: var(--dark-border);
+    }
+    
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-8px);
+      border-color: var(--primary);
+    }
+    
+    .card img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      border-radius: 0;
+    }
+    
+    .card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .card-content {
+      padding: 1.75rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 500;
+    }
+    
+    .dark-mode .card-meta {
+      color: var(--dark-muted);
+    }
+    
+    .card-meta i {
+      color: var(--primary);
+    }
+    
+    .card-content h3 {
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    
+    .dark-mode .card-content h3 {
+      color: var(--dark-text);
+    }
+    
+    .card-content p {
+      flex-grow: 1;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    
+    .dark-mode .card-content p {
+      color: var(--dark-text-light);
+    }
+    
+    .read-more {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      align-self: flex-start;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.3s ease;
+    }
+    
+    .read-more:hover {
+      color: var(--secondary);
+      gap: 0.75rem;
+    }
+    
+    .read-more i {
+      transition: transform 0.3s ease;
+    }
+    
+    .read-more:hover i {
+      transform: translateX(4px);
+    }
+
+    /* Article main container */
+    .article-page {
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    
+    .dark-mode .article-page {
+      background: var(--dark-card-bg);
+      color: var(--dark-text);
+      border-color: var(--dark-border);
+    }
+    
+    .article-page h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .article-meta {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+    
+    .dark-mode .article-meta {
+      border-color: var(--dark-border);
+      color: var(--dark-muted);
+    }
+    
+    .article-content p, .article-content ul, .article-content ol {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    
+    .dark-mode .article-content p, 
+    .dark-mode .article-content ul, 
+    .dark-mode .article-content ol {
+      color: var(--dark-text);
+    }
+    
+    .article-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2rem;
+      margin: 2.5rem 0 1rem;
+      color: var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      color: var(--accent);
+    }
+    
+    .article-content blockquote {
+      border-left: 4px solid var(--secondary);
+      padding-left: 1.5rem;
+      color: var(--secondary);
+      font-style: italic;
+      margin: 2rem 0;
+      font-size: 1.15rem;
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--primary);
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+    
+    .back-button:hover {
+      color: var(--secondary);
+      gap: 0.75rem;
+    }
+    
+    .back-button i {
+      transition: transform 0.3s ease;
+    }
+    
+    .back-button:hover i {
+      transform: translateX(-4px);
+    }
+
+    /* About section styling */
+    #about .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    
+    .dark-mode #about .about-content {
+      background: var(--dark-card-bg);
+      color: var(--dark-text);
+      border-color: var(--dark-border);
+    }
+    
+    #about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    #about h3 {
+      font-size: 1.75rem;
+      margin: 2rem 0 1rem;
+      color: var(--primary);
+    }
+    
+    #about p, #about ul {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+    
+    .dark-mode #about p, .dark-mode #about ul {
+      color: var(--dark-text-light);
+    }
+    
+    #about ul {
+      padding-left: 1.5rem;
+    }
+    
+    #about ul li {
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    
+    #about ul li::marker {
+      color: var(--primary);
+    }
+
+    /* Policy Pages Styling */
+    .policy-page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    
+    .dark-mode .policy-page {
+      background: var(--dark-card-bg);
+      border-color: var(--dark-border);
+    }
+    
+    .policy-page h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .policy-page .last-updated {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    
+    .dark-mode .policy-page .last-updated {
+      color: var(--dark-muted);
+    }
+    
+    .policy-page h2 {
+      font-size: 1.75rem;
+      margin: 2rem 0 1rem;
+      color: var(--primary);
+    }
+    
+    .policy-page h3 {
+      font-size: 1.35rem;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--accent);
+    }
+    
+    .policy-page p, .policy-page ul, .policy-page ol {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+    
+    .dark-mode .policy-page p, .dark-mode .policy-page ul, .dark-mode .policy-page ol {
+      color: var(--dark-text-light);
+    }
+    
+    .policy-page ul, .policy-page ol {
+      padding-left: 2rem;
+    }
+    
+    .policy-page li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .policy-page strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    
+    .dark-mode .policy-page strong {
+      color: var(--dark-text);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding: 3rem 2rem 1.5rem;
+      color: var(--dark-text);
+      font-size: 0.95rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      user-select: none;
+      margin-top: 5rem;
+    }
+    
+    footer .footer-inner {
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    footer .footer-links a {
+      color: var(--dark-text-light);
+      transition: all 0.3s ease;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    footer .footer-links a:hover {
+      color: var(--secondary);
+      transform: translateY(-2px);
+    }
+    
+    footer .footer-links a i {
+      font-size: 1rem;
+    }
+    
+    footer .social-links {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    
+    footer .social-links a {
+      font-size: 1.75rem;
+      text-decoration: none;
+      color: var(--dark-text);
+      transition: all 0.3s ease;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    footer .social-links a:hover {
+      color: white;
+      background: var(--primary);
+      transform: translateY(-5px) rotate(5deg);
+    }
+    
+    footer .social-links a.facebook:hover {
+      background: #1877f2;
+    }
+    
+    footer .social-links a.twitter:hover {
+      background: #1da1f2;
+    }
+    
+    footer .social-links a.instagram:hover {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+    
+    footer .social-links a.linkedin:hover {
+      background: #0077b5;
+    }
+    
+    footer .social-links a.youtube:hover {
+      background: #ff0000;
+    }
+    
+    footer .social-links a.github:hover {
+      background: #333;
+    }
+    
+    footer small {
+      display: block;
+      margin-top: 2rem;
+      color: var(--dark-muted);
+      font-size: 0.9rem;
+    }
+    
+    footer small i {
+      color: #ef4444;
+      animation: heartbeat 1.5s ease infinite;
+    }
+    
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .blog-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      ul.nav-links {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem !important;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section-header {
+        font-size: 2.25rem;
+      }
+      
+      .blog-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+      
+      .card img {
+        height: 200px;
+      }
+      
+      footer .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .policy-page, #about .about-content {
+        padding: 2rem 1.5rem;
+      }
+      
+      .policy-page h1, #about h2 {
+        font-size: 2.25rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      nav {
+        padding: 0 1rem;
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem !important;
+      }
+      
+      main {
+        padding: 0 1rem;
+      }
+      
+      .card-content {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo" onclick="navigateTo('home')">TechInsights</div>
+      <ul class="nav-links">
+        <li><a onclick="navigateTo('home')" class="nav-link" data-page="home">Home</a></li>
+        <li><a onclick="navigateTo('technology')" class="nav-link" data-page="technology">Technology</a></li>
+        <li><a onclick="navigateTo('design')" class="nav-link" data-page="design">Design</a></li>
+        <li><a onclick="navigateTo('business')" class="nav-link" data-page="business">Business</a></li>
+        <li><a onclick="navigateTo('about')" class="nav-link" data-page="about">About</a></li>
+      </ul>
+      <button class="theme-toggle" aria-label="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero/Welcome Section -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <h1>Discover Stories That Matter</h1>
+        <p>Explore cutting-edge insights on technology, design, and business from industry experts around the globe.</p>
+        <button class="cta-btn" onclick="navigateTo('technology')">Explore Technology</button>
+      </div>
+
+      <section class="blog-section">
+        <h2 class="section-header">Latest Articles</h2>
+        <p class="section-intro">Stay updated with our freshest content covering AI, web development, design systems, and business strategies.</p>
+        
+        <div class="blog-grid">
+          <!-- Latest Technology Articles -->
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80" alt="AI Web Development" />
+            <div class="card-content">
+              <div class="card-meta">
+                <span><i class="far fa-calendar"></i> Oct 12, 2025</span>
+                <span><i class="far fa-clock"></i> 8 min read</span>
+              </div>
+              <h3>The Future of AI in Web Development</h3>
+              <p>Artificial Intelligence tools are dramatically accelerating web design and coding through automation and intelligent assistance.</p>
+              <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80" alt="Serverless Architecture" />
+            <div class="card-content">
+              <div class="card-meta">
+                <span><i class="far fa-calendar"></i> Oct 10, 2025</span>
+                <span><i class="far fa-clock"></i> 7 min read</span>
+              </div>
+              <h3>Serverless Architectures: The Future Backend</h3>
+              <p>Exploring Function-as-a-Service and Backend-as-a-Service, the tech powering scalable, cost-efficient cloud backends.</p>
+              <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Latest Design Articles -->
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80" alt="Microinteractions" />
+            <div class="card-content">
+              <div class="card-meta">
+                <span><i class="far fa-calendar"></i> Oct 8, 2025</span>
+                <span><i class="far fa-clock"></i> 6 min read</span>
+              </div>
+              <h3>Micro-Interactions That Delight</h3>
+              <p>Leveraging subtle animations and feedback to enhance usability and brand connection.</p>
+              <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=600&q=80" alt="Dark Mode Design" />
+            <div class="card-content">
+              <div class="card-meta">
+                <span><i class="far fa-calendar"></i> Oct 6, 2025</span>
+                <span><i class="far fa-clock"></i> 5 min read</span>
+              </div>
+              <h3>Dark Mode Design Patterns</h3>
+              <p>Best practices for contrast, color harmonies, and theming in modern apps.</p>
+              <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- Latest Business Articles -->
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Data Driven" />
+            <div class="card-content">
+              <div class="card-meta">
+                <span><i class="far fa-calendar"></i> Oct 4, 2025</span>
+                <span><i class="far fa-clock"></i> 10 min read</span>
+              </div>
+              <h3>Data-Driven Decision Making</h3>
+              <p>Leveraging data to improve productivity, customer insight, and business outcomes.</p>
+              <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Growth Hacking" />
+            <div class="card-content">
+              <div class="card-meta">
+                <span><i class="far fa-calendar"></i> Oct 2, 2025</span>
+                <span><i class="far fa-clock"></i> 8 min read</span>
+              </div>
+              <h3>Growth Hacking Strategies</h3>
+              <p>Executing rapid, low-cost experiments to scale user acquisition and engagement.</p>
+              <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="page">
+      <h2 class="section-header">Technology</h2>
+      <p class="section-intro">The newest trends and tools shaping software development & innovation in 2025.</p>
+      
+      <div class="blog-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80" alt="AI Web Development" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Oct 12, 2025</span>
+              <span><i class="far fa-clock"></i> 8 min read</span>
+            </div>
+            <h3>The Future of AI in Web Development</h3>
+            <p>Artificial Intelligence tools are dramatically accelerating web design and coding through automation and intelligent assistance.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80" alt="Serverless Architecture" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 30, 2025</span>
+              <span><i class="far fa-clock"></i> 7 min read</span>
+            </div>
+            <h3>Serverless Architectures: The Future Backend</h3>
+            <p>Exploring Function-as-a-Service and Backend-as-a-Service, the tech powering scalable, cost-efficient cloud backends.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&q=80" alt="GraphQL vs REST" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 28, 2025</span>
+              <span><i class="far fa-clock"></i> 8 min read</span>
+            </div>
+            <h3>GraphQL vs REST: Choosing Modern APIs</h3>
+            <p>An in-depth comparison of flexible schema APIs and traditional REST endpoints.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80" alt="Edge Computing" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 25, 2025</span>
+              <span><i class="far fa-clock"></i> 6 min read</span>
+            </div>
+            <h3>Edge Computing for Modern Web Apps</h3>
+            <p>How decentralized compute improves performance and resilience at the network edge.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&q=80" alt="State Management" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 22, 2025</span>
+              <span><i class="far fa-clock"></i> 7 min read</span>
+            </div>
+            <h3>State Management in React: Redux vs Recoil vs Zustand</h3>
+            <p>Tradeoffs between popular state management frameworks for scalable React apps.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=600&q=80" alt="TypeScript Advanced" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 20, 2025</span>
+              <span><i class="far fa-clock"></i> 5 min read</span>
+            </div>
+            <h3>Advanced TypeScript Patterns for Robust Apps</h3>
+            <p>Modern TypeScript generics, mapped types, and conditional types to write safer code.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design Section -->
+    <section id="design" class="page">
+      <h2 class="section-header">Design</h2>
+      <p class="section-intro">Explore cutting-edge UI/UX trends, design systems, and visual storytelling techniques.</p>
+      
+      <div class="blog-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80" alt="Microinteractions" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 30, 2025</span>
+              <span><i class="far fa-clock"></i> 6 min read</span>
+            </div>
+            <h3>Micro-Interactions That Delight</h3>
+            <p>Leveraging subtle animations and feedback to enhance usability and brand connection.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=600&q=80" alt="Dark Mode Design" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 28, 2025</span>
+              <span><i class="far fa-clock"></i> 5 min read</span>
+            </div>
+            <h3>Dark Mode Design Patterns</h3>
+            <p>Best practices for contrast, color harmonies, and theming in modern apps.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&q=80" alt="Design Systems" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 25, 2025</span>
+              <span><i class="far fa-clock"></i> 7 min read</span>
+            </div>
+            <h3>Building Scalable Design Systems</h3>
+            <p>Creating reusable components and tokens for consistent brand experiences.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Accessible UX" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 22, 2025</span>
+              <span><i class="far fa-clock"></i> 6 min read</span>
+            </div>
+            <h3>Inclusive UX Beyond WCAG</h3>
+            <p>Designing for neurodiversity, cognitive load, and assistive tech usability.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=80" alt="Motion UI" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 20, 2025</span>
+              <span><i class="far fa-clock"></i> 8 min read</span>
+            </div>
+            <h3>Motion Design Principles</h3>
+            <p>Using animation timing and choreography to guide user attention.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600&q=80" alt="Neumorphism UI" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 18, 2025</span>
+              <span><i class="far fa-clock"></i> 7 min read</span>
+            </div>
+            <h3>Neumorphism: A Soft UI Critique</h3>
+            <p>An honest look at the strengths and weaknesses of neumorphic design trends.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Section -->
+    <section id="business" class="page">
+      <h2 class="section-header">Business</h2>
+      <p class="section-intro">Actionable strategies and insights for digital business growth.</p>
+      
+      <div class="blog-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Data Driven" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 30, 2025</span>
+              <span><i class="far fa-clock"></i> 10 min read</span>
+            </div>
+            <h3>Data-Driven Decision Making</h3>
+            <p>Leveraging data to improve productivity, customer insight, and business outcomes.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Growth Hacking" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 28, 2025</span>
+              <span><i class="far fa-clock"></i> 8 min read</span>
+            </div>
+            <h3>Growth Hacking Strategies</h3>
+            <p>Executing rapid, low-cost experiments to scale user acquisition and engagement.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80" alt="Lean Startup" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 25, 2025</span>
+              <span><i class="far fa-clock"></i> 7 min read</span>
+            </div>
+            <h3>Lean Startup Methodology in Tech</h3>
+            <p>Building MVPs, validating markets, and pivoting efficiently for tech startups.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80" alt="Remote Teams" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 22, 2025</span>
+              <span><i class="far fa-clock"></i> 6 min read</span>
+            </div>
+            <h3>Remote Team Management</h3>
+            <p>Best tools and tips for managing productive distributed engineering teams.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=80" alt="SaaS Pricing" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 20, 2025</span>
+              <span><i class="far fa-clock"></i> 9 min read</span>
+            </div>
+            <h3>SaaS Pricing Models</h3>
+            <p>Freemium, tiered, and usage pricing strategies for optimizing recurring revenue.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&q=80" alt="Blockchain Business" />
+          <div class="card-content">
+            <div class="card-meta">
+              <span><i class="far fa-calendar"></i> Sep 18, 2025</span>
+              <span><i class="far fa-clock"></i> 8 min read</span>
+            </div>
+            <h3>Blockchain Use Cases for Business</h3>
+            <p>How enterprises leverage blockchain for supply chain, identity, and smart contracts.</p>
+            <a class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="page">
+      <div class="about-content">
+        <h2>About TechInsights</h2>
+        <p>
+          TechInsights is a leading platform delivering in-depth technology, design, and business knowledge to professionals worldwide.
+          Founded in 2025 by a team of industry experts, we combine deep technical expertise with innovative storytelling to empower our readers.
+        </p>
+        <h3>Our Mission</h3>
+        <p>
+          Our mission is to make complex technical insights accessible and actionable. We strive to
+          provide the latest industry trends, practical tutorials, and forward-thinking strategies.
+        </p>
+        <h3>What We Cover</h3>
+        <ul>
+          <li>Cutting-edge developments in AI, web development, and cloud technologies</li>
+          <li>Medium and large-scale design systems, UX best practices, and emerging UI trends</li>
+          <li>Data-driven business strategies, digital transformation, and growth hacking</li>
+          <li>Security fundamentals and advanced techniques to protect digital assets</li>
+          <li>Community collaboration and professional development guidance</li>
+        </ul>
+        <h3>Connect With Us</h3>
+        <p>We invite you to subscribe to our newsletter, follow us on social media, and contribute your ideas to the TechInsights community.</p>
+      </div>
+    </section>
+
+    <!-- Privacy Policy Page -->
+    <section id="privacy-policy" class="page">
+      <div class="policy-page">
+        <a class="back-button" onclick="navigateTo('home')">
+          <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last Updated: October 13, 2025</p>
+        
+        <h2>1. Introduction</h2>
+        <p>Welcome to TechInsights ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+        
+        <h2>2. Information We Collect</h2>
+        <h3>Personal Information</h3>
+        <p>We may collect personal information that you voluntarily provide to us when you:</p>
+        <ul>
+          <li>Subscribe to our newsletter</li>
+          <li>Leave comments on articles</li>
+          <li>Contact us via email or contact forms</li>
+          <li>Create an account on our platform</li>
+        </ul>
+        <p>This information may include your name, email address, and any other information you choose to provide.</p>
+        
+        <h3>Automatically Collected Information</h3>
+        <p>When you visit our website, we automatically collect certain information about your device, including:</p>
+        <ul>
+          <li>IP address and browser type</li>
+          <li>Operating system and device information</li>
+          <li>Pages visited and time spent on pages</li>
+          <li>Referring website addresses</li>
+          <li>Click patterns and user behavior analytics</li>
+        </ul>
+        
+        <h2>3. How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+          <li>Provide, operate, and maintain our website</li>
+          <li>Send you newsletters and marketing communications (with your consent)</li>
+          <li>Improve and personalize your experience</li>
+          <li>Analyze usage patterns and optimize our content</li>
+          <li>Respond to your comments and inquiries</li>
+          <li>Detect, prevent, and address technical issues</li>
+        </ul>
+        
+        <h2>4. Contact Us</h2>
+        <p>If you have questions about this Privacy Policy, please contact us at:</p>
+        <p><strong>Email:</strong> privacy@techinsights.com<br>
+        <strong>Address:</strong> TechInsights Inc., 123 Tech Street, San Francisco, CA 94105</p>
+      </div>
+    </section>
+
+    <!-- Terms of Service Page -->
+    <section id="terms-service" class="page">
+      <div class="policy-page">
+        <a class="back-button" onclick="navigateTo('home')">
+          <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <h1>Terms of Service</h1>
+        <p class="last-updated">Last Updated: October 13, 2025</p>
+        
+        <h2>1. Agreement to Terms</h2>
+        <p>By accessing or using TechInsights ("the Website"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using this site.</p>
+        
+        <h2>2. Use License</h2>
+        <p>Permission is granted to temporarily access the materials on TechInsights for personal, non-commercial viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+        <ul>
+          <li>Modify or copy the materials</li>
+          <li>Use the materials for commercial purposes</li>
+          <li>Remove copyright or proprietary notations</li>
+          <li>Transfer materials to another person or mirror on another server</li>
+        </ul>
+        
+        <h2>3. Contact Information</h2>
+        <p>For questions about these Terms of Service, contact us at:</p>
+        <p><strong>Email:</strong> legal@techinsights.com<br>
+        <strong>Address:</strong> TechInsights Inc., 123 Tech Street, San Francisco, CA 94105</p>
+      </div>
+    </section>
+
+    <!-- Cookie Policy Page -->
+    <section id="cookie-policy" class="page">
+      <div class="policy-page">
+        <a class="back-button" onclick="navigateTo('home')">
+          <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <h1>Cookie Policy</h1>
+        <p class="last-updated">Last Updated: October 13, 2025</p>
+        
+        <h2>1. What Are Cookies</h2>
+        <p>Cookies are small text files that are placed on your device when you visit a website. They are widely used to make websites work more efficiently and provide information to website owners.</p>
+        
+        <h2>2. How We Use Cookies</h2>
+        <p>TechInsights uses cookies to:</p>
+        <ul>
+          <li>Remember your preferences and settings</li>
+          <li>Understand how you use our website</li>
+          <li>Improve your user experience</li>
+          <li>Analyze website traffic and performance</li>
+          <li>Enable social media features</li>
+          <li>Deliver personalized content and advertisements</li>
+        </ul>
+        
+        <h2>3. Contact Us</h2>
+        <p>If you have questions about our Cookie Policy, contact us at:</p>
+        <p><strong>Email:</strong> cookies@techinsights.com<br>
+        <strong>Address:</strong> TechInsights Inc., 123 Tech Street, San Francisco, CA 94105</p>
+      </div>
+    </section>
+
+    <!-- Contact Support Page -->
+    <section id="contact-support" class="page">
+      <div class="policy-page">
+        <a class="back-button" onclick="navigateTo('home')">
+          <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <h1>Contact Support</h1>
+        <p class="last-updated">We're here to help!</p>
+        
+        <h2>Get in Touch</h2>
+        <p>If you have any questions, concerns, or feedback, our support team is ready to assist you. Please choose the most appropriate contact method below:</p>
+        
+        <h3><i class="fas fa-envelope"></i> Email Support</h3>
+        <p><strong>General Inquiries:</strong> support@techinsights.com<br>
+        <strong>Technical Issues:</strong> tech@techinsights.com<br>
+        <strong>Business &amp; Partnerships:</strong> business@techinsights.com<br>
+        <strong>Editorial &amp; Content:</strong> editorial@techinsights.com</p>
+        
+        <h3><i class="fas fa-map-marker-alt"></i> Office Address</h3>
+        <p>TechInsights Inc.<br>
+        123 Tech Street, Suite 500<br>
+        San Francisco, CA 94105<br>
+        United States</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a onclick="navigateTo('privacy-policy')" title="Privacy Policy">
+          <i class="fas fa-shield-alt"></i> Privacy Policy
+        </a>
+        <a onclick="navigateTo('terms-service')" title="Terms of Service">
+          <i class="fas fa-file-contract"></i> Terms of Service
+        </a>
+        <a onclick="navigateTo('cookie-policy')" title="Cookie Policy">
+          <i class="fas fa-cookie-bite"></i> Cookie Policy
+        </a>
+        <a onclick="navigateTo('contact-support')" title="Contact Support">
+          <i class="fas fa-headset"></i> Contact Support
+        </a>
+      </nav>
+      
+      <div class="social-links" aria-label="Social media links">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" class="facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter" class="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" class="linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube" class="youtube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub" class="github">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      
+      <small>© 2025 TechInsights. All rights reserved. Crafted with <i class="fas fa-heart"></i> by a dedicated team.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle - Simplified for safe hosting (no localStorage)
+    const themeToggleBtn = document.querySelector(".theme-toggle");
+    const body = document.body;
+    const themeIcon = themeToggleBtn.querySelector("i");
+
+    function setTheme(isDark) {
+      if (isDark) {
+        body.classList.add("dark-mode");
+        themeIcon.classList.remove("fa-moon");
+        themeIcon.classList.add("fa-sun");
+      } else {
+        body.classList.remove("dark-mode");
+        themeIcon.classList.remove("fa-sun");
+        themeIcon.classList.add("fa-moon");
+      }
+    }
+
+    themeToggleBtn.addEventListener("click", () => {
+      const isDark = !body.classList.contains("dark-mode");
+      setTheme(isDark);
+    });
+
+    // Initialize theme to light mode
+    setTheme(false);
+
+    // Navigate between page sections
+    const navLinks = document.querySelectorAll(".nav-link");
+    const pages = document.querySelectorAll(".page");
+
+    function navigateTo(pageName) {
+      // Hide all pages
+      pages.forEach((page) => {
+        page.classList.remove("active");
+      });
+      
+      // Show selected page
+      const targetPage = document.getElementById(pageName);
+      if (targetPage) {
+        targetPage.classList.add("active");
+      }
+
+      // Update active nav link
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("data-page") === pageName) {
+          link.classList.add("active");
+        }
+      });
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Make navigateTo available globally
+    window.navigateTo = navigateTo;
+
+    // Article data with full content
+    const articles = {
+      'ai-web-dev': {
+        title: 'The Future of AI in Web Development',
+        date: 'October 12, 2025',
+        readTime: '8 min read',
+        author: 'Sarah Chen',
+        category: 'Technology',
+        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80',
+        content: `
+          <p>Artificial Intelligence is revolutionizing web development in ways we couldn't have imagined just a few years ago. From automated code generation to intelligent debugging, AI tools are becoming indispensable for modern developers.</p>
+
+          <h2>AI-Powered Code Generation</h2>
+          <p>Tools like GitHub Copilot and ChatGPT are transforming how developers write code. These AI assistants can:</p>
+          <ul>
+            <li>Generate boilerplate code instantly</li>
+            <li>Suggest context-aware completions</li>
+            <li>Translate natural language to code</li>
+            <li>Refactor existing codebases efficiently</li>
+          </ul>
+
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80" alt="AI Code Generation" style="margin: 2rem 0;" />
+
+          <h2>Intelligent Testing and Debugging</h2>
+          <p>AI is making testing and debugging faster and more thorough. Machine learning models can predict potential bugs, generate test cases automatically, and even suggest fixes for common issues.</p>
+
+          <blockquote>"AI is not replacing developers—it's making them 10x more productive by handling repetitive tasks and offering intelligent suggestions." — Tech Industry Report 2025</blockquote>
+
+          <h2>Design and UX Optimization</h2>
+          <p>AI tools are now capable of analyzing user behavior patterns and suggesting UI/UX improvements. They can automatically generate responsive layouts, optimize color schemes for accessibility, and even predict user engagement.</p>
+
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="AI Design Tools" style="margin: 2rem 0;" />
+
+          <h2>The Future Ahead</h2>
+          <p>As AI continues to evolve, we can expect even more sophisticated tools that understand context, learn from codebases, and collaborate with developers in real-time. The future of web development is not human vs. AI—it's human + AI working together.</p>
+        `
+      },
+      'serverless-arch': {
+        title: 'Serverless Architectures: The Future Backend',
+        date: 'September 30, 2025',
+        readTime: '7 min read',
+        author: 'Michael Rodriguez',
+        category: 'Technology',
+        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80',
+        content: `
+          <p>Serverless computing is transforming how we build and deploy applications. By abstracting away infrastructure management, developers can focus entirely on writing code that delivers value.</p>
+
+          <h2>What is Serverless?</h2>
+          <p>Despite the name, serverless doesn't mean no servers. It means developers don't have to think about servers. Cloud providers handle all infrastructure management, scaling, and maintenance.</p>
+
+          <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80" alt="Cloud Infrastructure" style="margin: 2rem 0;" />
+
+          <h2>Key Benefits</h2>
+          <ul>
+            <li><strong>Cost Efficiency:</strong> Pay only for actual execution time</li>
+            <li><strong>Auto-scaling:</strong> Handle traffic spikes automatically</li>
+            <li><strong>Faster Development:</strong> Focus on code, not infrastructure</li>
+            <li><strong>High Availability:</strong> Built-in redundancy and failover</li>
+          </ul>
+
+          <h2>Popular Serverless Platforms</h2>
+          <p>AWS Lambda, Google Cloud Functions, and Azure Functions lead the serverless space. Each offers unique features and integrations with their respective cloud ecosystems.</p>
+
+          <blockquote>"Serverless is not just a technology choice—it's a paradigm shift in how we think about application architecture." — Cloud Architecture Summit 2025</blockquote>
+
+          <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80" alt="Serverless Architecture" style="margin: 2rem 0;" />
+
+          <h2>Best Practices</h2>
+          <p>To succeed with serverless, follow these guidelines: keep functions small and focused, implement proper monitoring, manage cold starts effectively, and use managed services for databases and caching.</p>
+        `
+      },
+      'micro-interactions': {
+        title: 'Micro-Interactions That Delight',
+        date: 'September 30, 2025',
+        readTime: '6 min read',
+        author: 'Emily Park',
+        category: 'Design',
+        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80',
+        content: `
+          <p>Micro-interactions are the small, delightful moments that make digital experiences feel alive. They're the subtle animations, sounds, and visual feedback that guide users through your interface.</p>
+
+          <h2>What Are Micro-Interactions?</h2>
+          <p>Micro-interactions are contained product moments that revolve around a single use case. They include things like:</p>
+          <ul>
+            <li>Button hover effects and click animations</li>
+            <li>Form validation feedback</li>
+            <li>Loading indicators and progress bars</li>
+            <li>Swipe gestures and pull-to-refresh</li>
+          </ul>
+
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80" alt="UI Animation" style="margin: 2rem 0;" />
+
+          <h2>The Psychology Behind It</h2>
+          <p>Good micro-interactions tap into human psychology. They provide immediate feedback, reduce cognitive load, and create emotional connections with users. When done right, they're almost invisible—users feel their effects without consciously noticing them.</p>
+
+          <blockquote>"The best interfaces do two things: they're clear and they're human. Micro-interactions help achieve both." — UX Design Principles 2025</blockquote>
+
+          <h2>Design Principles</h2>
+          <p>Effective micro-interactions follow these principles: they're fast (under 300ms), purposeful, consistent with your design system, and they enhance rather than distract from the core experience.</p>
+
+          <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&q=80" alt="Design System" style="margin: 2rem 0;" />
+
+          <h2>Implementation Tips</h2>
+          <p>Use CSS transitions and animations for simple effects, JavaScript libraries like GSAP for complex animations, and always test on actual devices to ensure smooth 60fps performance.</p>
+        `
+      },
+      'dark-mode-design': {
+        title: 'Dark Mode Design Patterns',
+        date: 'September 28, 2025',
+        readTime: '5 min read',
+        author: 'Alex Johnson',
+        category: 'Design',
+        image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=1200&q=80',
+        content: `
+          <p>Dark mode has evolved from a trendy feature to an essential part of modern UI design. When implemented thoughtfully, it reduces eye strain, saves battery life, and provides a premium aesthetic.</p>
+
+          <h2>The Science of Dark Mode</h2>
+          <p>Our eyes are less strained in low-light conditions when viewing darker interfaces. OLED screens benefit from reduced power consumption, and many users simply prefer the aesthetic of dark themes.</p>
+
+          <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&q=80" alt="Dark Mode Interface" style="margin: 2rem 0;" />
+
+          <h2>Color Contrast Matters</h2>
+          <p>The biggest mistake in dark mode design is using pure black (#000000). Instead, use dark grays (like #1a1a1a or #0f172a) as your base. This provides better contrast without being harsh on the eyes.</p>
+
+          <ul>
+            <li><strong>Background:</strong> Use dark grays, not pure black</li>
+            <li><strong>Text:</strong> Use off-white for primary text (#e5e5e5)</li>
+            <li><strong>Accent Colors:</strong> Slightly desaturate bright colors</li>
+            <li><strong>Shadows:</strong> Use subtle highlights instead of shadows</li>
+          </ul>
+
+          <blockquote>"Good dark mode isn't just inverted colors—it's a complete rethinking of your color system." — Material Design Guidelines</blockquote>
+
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="Color Palette" style="margin: 2rem 0;" />
+
+          <h2>Implementation Best Practices</h2>
+          <p>Use CSS custom properties (variables) to make switching themes seamless. Respect user preferences with prefers-color-scheme media query, and always provide a manual toggle for user control.</p>
+        `
+      },
+      'data-driven': {
+        title: 'Data-Driven Decision Making',
+        date: 'September 30, 2025',
+        readTime: '10 min read',
+        author: 'David Kumar',
+        category: 'Business',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+        content: `
+          <p>In today's business landscape, gut feelings and intuition are no longer enough. Data-driven decision making has become the cornerstone of successful companies, enabling them to make informed choices backed by concrete evidence.</p>
+
+          <h2>Why Data Matters</h2>
+          <p>Data provides objective insights that can reveal patterns, trends, and opportunities that human observation might miss. Companies that embrace data-driven approaches are 5-6% more productive and profitable than their competitors.</p>
+
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Data Analytics" style="margin: 2rem 0;" />
+
+          <h2>Key Metrics to Track</h2>
+          <ul>
+            <li><strong>Customer Acquisition Cost (CAC):</strong> How much you spend to acquire each customer</li>
+            <li><strong>Customer Lifetime Value (CLV):</strong> Total revenue from a customer relationship</li>
+            <li><strong>Churn Rate:</strong> Percentage of customers who stop using your product</li>
+            <li><strong>Net Promoter Score (NPS):</strong> Customer satisfaction and loyalty measure</li>
+            <li><strong>Conversion Rate:</strong> Percentage of visitors who take desired actions</li>
+          </ul>
+
+          <blockquote>"Without data, you're just another person with an opinion. With data, you're a strategist with evidence." — Business Intelligence Report 2025</blockquote>
+
+          <h2>Building a Data Culture</h2>
+          <p>Creating a data-driven organization requires more than just tools—it requires cultural change. Leaders must champion data literacy, invest in training, and create processes that integrate data into every decision.</p>
+
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Team Analytics" style="margin: 2rem 0;" />
+
+          <h2>Tools and Technologies</h2>
+          <p>Modern analytics platforms like Google Analytics, Mixpanel, Amplitude, and Tableau make it easier than ever to collect, analyze, and visualize data. The key is choosing tools that match your specific needs and scale.</p>
+        `
+      },
+      'growth-hacking': {
+        title: 'Growth Hacking Strategies',
+        date: 'September 28, 2025',
+        readTime: '8 min read',
+        author: 'Rachel Martinez',
+        category: 'Business',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
+        content: `
+          <p>Growth hacking is the art and science of rapid experimentation across marketing channels to identify the most effective ways to grow a business. It's about finding creative, low-cost alternatives to traditional marketing.</p>
+
+          <h2>The Growth Hacking Mindset</h2>
+          <p>Growth hackers think differently. They focus on scalable, repeatable tactics rather than one-off campaigns. Every decision is driven by metrics, and they're not afraid to fail fast and iterate quickly.</p>
+
+          <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80" alt="Growth Strategy" style="margin: 2rem 0;" />
+
+          <h2>Core Growth Hacking Tactics</h2>
+          <ul>
+            <li><strong>Viral Loops:</strong> Build sharing into your product's core experience</li>
+            <li><strong>Content Marketing:</strong> Create valuable content that attracts your target audience</li>
+            <li><strong>Email Marketing:</strong> Build and nurture an engaged email list</li>
+            <li><strong>Referral Programs:</strong> Incentivize users to bring in new customers</li>
+            <li><strong>SEO Optimization:</strong> Rank for high-intent keywords in your niche</li>
+          </ul>
+
+          <blockquote>"Growth hacking isn't about hacks—it's about a systematic approach to achieving explosive growth through rapid experimentation." — Startup Growth Playbook 2025</blockquote>
+
+          <h2>The AARRR Framework</h2>
+          <p>Use the pirate metrics framework to guide your growth efforts: Acquisition (how users find you), Activation (first user experience), Retention (users coming back), Revenue (monetization), and Referral (users bringing others).</p>
+
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Growth Metrics" style="margin: 2rem 0;" />
+
+          <h2>Case Studies</h2>
+          <p>Dropbox grew through referral bonuses, Airbnb hacked Craigslist for distribution, and Hotmail added "PS: I love you" signatures. Each found creative, scalable ways to grow without massive marketing budgets.</p>
+        `
+      }
+    };
+
+    // Handle article card clicks
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', function() {
+        const articleTitle = this.querySelector('h3').textContent;
+        let articleKey = '';
+        
+        // Map article titles to keys
+        if (articleTitle.includes('AI in Web Development')) articleKey = 'ai-web-dev';
+        else if (articleTitle.includes('Serverless')) articleKey = 'serverless-arch';
+        else if (articleTitle.includes('Micro-Interactions')) articleKey = 'micro-interactions';
+        else if (articleTitle.includes('Dark Mode')) articleKey = 'dark-mode-design';
+        else if (articleTitle.includes('Data-Driven')) articleKey = 'data-driven';
+        else if (articleTitle.includes('Growth Hacking')) articleKey = 'growth-hacking';
+        
+        if (articleKey && articles[articleKey]) {
+          showArticle(articleKey);
+        }
+      });
+    });
+
+    function showArticle(articleKey) {
+      const article = articles[articleKey];
+      if (!article) return;
+
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+
+      // Create or update article page
+      let articlePage = document.getElementById('article-view');
+      if (!articlePage) {
+        articlePage = document.createElement('section');
+        articlePage.id = 'article-view';
+        articlePage.className = 'page';
+        document.querySelector('main').appendChild(articlePage);
+      }
+
+      // Set article content
+      articlePage.innerHTML = `
+        <div class="article-page">
+          <a class="back-button" onclick="navigateTo('home')">
+            <i class="fas fa-arrow-left"></i> Back to Home
+          </a>
+          <img src="${article.image}" alt="${article.title}" style="width: 100%; margin-bottom: 2rem; border-radius: 16px;" />
+          <h1>${article.title}</h1>
+          <div class="article-meta">
+            <span><i class="far fa-calendar"></i> ${article.date}</span> • 
+            <span><i class="far fa-clock"></i> ${article.readTime}</span> • 
+            <span><i class="fas fa-user"></i> ${article.author}</span> • 
+            <span><i class="fas fa-tag"></i> ${article.category}</span>
+          </div>
+          <div class="article-content">
+            ${article.content}
+          </div>
+        </div>
+      `;
+
+      articlePage.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
